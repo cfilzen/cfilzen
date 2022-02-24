@@ -1,18 +1,25 @@
 ﻿@page "/counter"
 
-<PageTitle>Counter</PageTitle>
+@using CFilzenMain.Models;
 
-<h1>Counter</h1>
+<h1>Golf Score</h1>
 
-<p role="status">Current count: @currentCount</p>
-
-<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+@*<EditForm Model="@personModel" OnValidSubmit="@HandleValidSubmit">
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+    <HxInputText Label="First Name" @bind-Value="@personModel.FirstName" Placeholder="First Name" />
+    <HxInputText Label="Last Name" @bind-Value="@personModel.LastName" Placeholder="Last Name" />
+    <HxInputText Label="Email" @bind-Value="@personModel.Email" Placeholder="Email" />
+    <HxInputTextArea Label="Comment" @bind-Value="@personModel.Comment" Placeholder="Tell me what is on your mind."/>
+    @*<HxFormValue Label="Name Entered" Value="@personModel.Name" />
+	<HxSubmit Color="ThemeColor.Primary">Submit</HxSubmit>
+</EditForm>*@
 
 @code {
-    private int currentCount = 0;
+    private PersonModel personModel = new PersonModel();
 
-    private void IncrementCount()
+    private void HandleValidSubmit()
     {
-        currentCount++;
+        // Process the valid form
     }
 }
