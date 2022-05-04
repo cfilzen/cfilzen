@@ -3,17 +3,17 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://localhost:18349",
-      "sslPort": 44326
+      "applicationUrl": "http://localhost:46364",
+      "sslPort": 44369
     }
   },
   "profiles": {
-    "ChrisFilzenBlazor": {
+    "CFilzenMain": {
       "commandName": "Project",
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "inspectUri": "{wsProtocol}://{url.hostname}:{url.port}/_framework/debug/ws-proxy?browser={browserInspectUri}",
-      "applicationUrl": "https://localhost:7080;http://localhost:5080",
+      "applicationUrl": "https://localhost:7210;http://localhost:5210",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
