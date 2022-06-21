@@ -1,0 +1,182 @@
+﻿@page "/lottery"
+
+@using CFilzenMain.Models;
+@using CFilzenMain.Helpers;
+
+<h1>Lottery Numbers</h1>
+<div><h3>Lottery numbers for @DateTime.Today.ToString("d")</h3></div>
+
+<h2>Florida Lotto</h2>
+<div class="container-fluid">
+    <div>
+        <div class="row"><strong>@lotteryModel.Message</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 lottocollg">@lotteryModel.Pick1</div>
+        <div class="col-sm-2 lottocolam">@lotteryModel.Pick2</div>
+        <div class="col-sm-2 lottocollg">@lotteryModel.Pick3</div>
+        <div class="col-sm-2 lottocolam">@lotteryModel.Pick4</div>
+        <div class="col-sm-2 lottocollg">@lotteryModel.Pick5</div>
+        <div class="col-sm-2 lottocolam">@lotteryModel.Pick6</div>
+    </div>
+</div>
+
+<h2>Florida Powerball</h2>
+<div class="container-fluid">
+    <div>
+        <div class="row"><strong>@powerBallLotteryModel.Message</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 lottocollg">@powerBallLotteryModel.Pick1</div>
+        <div class="col-sm-2 lottocolam">@powerBallLotteryModel.Pick2</div>
+        <div class="col-sm-2 lottocollg">@powerBallLotteryModel.Pick3</div>
+        <div class="col-sm-2 lottocolam">@powerBallLotteryModel.Pick4</div>
+        <div class="col-sm-2 lottocollg">@powerBallLotteryModel.Pick5</div>
+        <div class="col-sm-2 lottocolam">@powerBallLotteryModel.PickPB</div>
+    </div>
+</div>
+
+<h2>Florida Mega Millions</h2>
+<div class="container-fluid">
+    <div>
+        <div class="row"><strong>@megMillLotteryModel.Message</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 lottocollg">@megMillLotteryModel.Pick1</div>
+        <div class="col-sm-2 lottocolam">@megMillLotteryModel.Pick2</div>
+        <div class="col-sm-2 lottocollg">@megMillLotteryModel.Pick3</div>
+        <div class="col-sm-2 lottocolam">@megMillLotteryModel.Pick4</div>
+        <div class="col-sm-2 lottocollg">@megMillLotteryModel.Pick5</div>
+        <div class="col-sm-2 lottocolam">@megMillLotteryModel.PickMegaBall</div>
+    </div>
+</div>
+
+<h2>Florida Cash 4 Life</h2>
+<div class="container-fluid">
+    <div>
+        <div class="row"><strong>@cash4LifeModel.Message</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 lottocollg">@cash4LifeModel.Pick1</div>
+        <div class="col-sm-2 lottocolam">@cash4LifeModel.Pick2</div>
+        <div class="col-sm-2 lottocollg">@cash4LifeModel.Pick3</div>
+        <div class="col-sm-2 lottocolam">@cash4LifeModel.Pick4</div>
+        <div class="col-sm-2 lottocollg">@cash4LifeModel.Pick5</div>
+        <div class="col-sm-2 lottocolam">@cash4LifeModel.PickCashBall</div>
+    </div>
+</div>
+
+<h2>Florida Jackpot Triple Play</h2>
+<div class="container-fluid">
+    <div>
+        <div class="row"><strong>@jackpotTriplePlayModel.Message</strong></div>
+    </div>
+    <div class="row">
+        <div class="col-sm-2 lottocollg">@jackpotTriplePlayModel.Pick1</div>
+        <div class="col-sm-2 lottocolam">@jackpotTriplePlayModel.Pick2</div>
+        <div class="col-sm-2 lottocollg">@jackpotTriplePlayModel.Pick3</div>
+        <div class="col-sm-2 lottocolam">@jackpotTriplePlayModel.Pick4</div>
+        <div class="col-sm-2 lottocollg">@jackpotTriplePlayModel.Pick5</div>
+        <div class="col-sm-2 lottocolam">@jackpotTriplePlayModel.Pick6</div>
+    </div>
+</div>
+
+<h2>Florida Cash Pop</h2>
+<div class="container-fluid">
+    @*<div>
+    <div class="row"><strong>@cashPopModel.Message</strong></div>
+    </div>*@
+    <div class="row">
+        @foreach (var item in CashPopNumbers.Select((x, i) => new { Data = x, Index = i }))
+        {
+            var currentStyle = GetStyle(item.Index);
+
+            <div class="col-sm-2 @currentStyle">@item.Data.ToString()</div>
+        }
+    </div>
+</div>
+
+@code {
+    public static List<int> CashPopNumbers = new();
+
+    private FLLottoModel lotteryModel = new()
+        {
+            Pick1 = LotteryHelper.GenerateFLLotto(),
+            Pick2 = LotteryHelper.GenerateFLLotto(),
+            Pick3 = LotteryHelper.GenerateFLLotto(),
+            Pick4 = LotteryHelper.GenerateFLLotto(),
+            Pick5 = LotteryHelper.GenerateFLLotto(),
+            Pick6 = LotteryHelper.GenerateFLLotto()
+        };
+
+    private FLPowerBallModel powerBallLotteryModel = new()
+        {
+            Pick1 = LotteryHelper.GenerateFLPowerballLotto(),
+            Pick2 = LotteryHelper.GenerateFLPowerballLotto(),
+            Pick3 = LotteryHelper.GenerateFLPowerballLotto(),
+            Pick4 = LotteryHelper.GenerateFLPowerballLotto(),
+            Pick5 = LotteryHelper.GenerateFLPowerballLotto(),
+            PickPB = LotteryHelper.GenerateFLPowerball()
+        };
+
+    private FLMegaMillModel megMillLotteryModel = new()
+        {
+            Pick1 = LotteryHelper.GenerateMegaMillLotto(),
+            Pick2 = LotteryHelper.GenerateMegaMillLotto(),
+            Pick3 = LotteryHelper.GenerateMegaMillLotto(),
+            Pick4 = LotteryHelper.GenerateMegaMillLotto(),
+            Pick5 = LotteryHelper.GenerateMegaMillLotto(),
+            PickMegaBall = LotteryHelper.GenerateMegaMillMB()
+        };
+
+    private FLCash4LifeModel cash4LifeModel = new()
+        {
+            Pick1 = LotteryHelper.GenerateCash4LifeLotto(),
+            Pick2 = LotteryHelper.GenerateCash4LifeLotto(),
+            Pick3 = LotteryHelper.GenerateCash4LifeLotto(),
+            Pick4 = LotteryHelper.GenerateCash4LifeLotto(),
+            Pick5 = LotteryHelper.GenerateCash4LifeLotto(),
+            PickCashBall = LotteryHelper.GenerateCash4LifeCB()
+        };
+
+    private FLJackpotTriplePlayLottoModel jackpotTriplePlayModel = new()
+        {
+            Pick1 = LotteryHelper.GenerateJackpotTriplePlay(),
+            Pick2 = LotteryHelper.GenerateJackpotTriplePlay(),
+            Pick3 = LotteryHelper.GenerateJackpotTriplePlay(),
+            Pick4 = LotteryHelper.GenerateJackpotTriplePlay(),
+            Pick5 = LotteryHelper.GenerateJackpotTriplePlay(),
+            Pick6 = LotteryHelper.GenerateJackpotTriplePlay()
+        };
+
+    private FLCashPopLottoModel cashPopModel = new();
+
+    protected override void OnInitialized()
+    {
+        CashPopNumbers = LotteryHelper.GenerateCashPop();
+    }
+
+    private void HandleValidSubmit()
+    {
+        // Process the valid form
+    }
+
+    private string GetStyle(int index)
+    {
+        Console.WriteLine($"Index is: {index}");
+
+        string styleString = string.Empty;
+
+        if (index % 2 == 1)
+        {
+            styleString = "col-sm-2 lottocolam";
+        }
+        else if (index % 2 == 0)
+        {
+
+            styleString = "col-sm-2 lottocollg";
+        }
+
+        return styleString;
+    }
+}

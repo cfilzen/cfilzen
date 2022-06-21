@@ -62,3 +62,27 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
+.lottocollg {
+    background-color: lightgray;
+    width: 50px;
+    font-size: 30px;
+    text-align: center;
+}
+
+.lottocolam {
+    background-color: aquamarine;
+    width: 50px;
+    font-size: 30px;
+    text-align: center;
+}
+
+h2, .one{
+    background-color: red;
+}
+
+h2, .two{
+    background-color: white;
+}
+
+
